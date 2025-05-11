@@ -1,4 +1,5 @@
 import mixlabImg from "../assets/projects/mixlab.png";
+import GeminiAi from "../assets/projects/Gemini_AI_API.png";
 
 
 
@@ -33,24 +34,32 @@ export const cards = [
     },
   },
   {
-    description: "Babbu Maan",
-    title: "Mitran Di Chhatri2",
-    src: mixlabImg,
+    description: "Java Springboot, React Js, Bootstrap CSS, Google Gemini AI",
+    title: "Nexsus AI",
+    src: GeminiAi,
     ctaText: "VIEW",
-    ctaLink: "",
+    ctaLink: "https://github.com/VinulGajaman/AiBot",
     content: () => {
+      const tags: string[] = ["SPRINGBOOT", "REACT", "BOOTSTRAP", "GEMINI API"];
       return (
         <p>
-          Babu Maan, a legendary Punjabi singer, is renowned for his soulful
-          voice and profound lyrics that resonate deeply with his audience. Born
-          in the village of Khant Maanpur in Punjab, India, he has become a
-          cultural icon in the Punjabi music industry. <br /> <br /> His songs
-          often reflect the struggles and triumphs of everyday life, capturing
-          the essence of Punjabi culture and traditions. With a career spanning
-          over two decades, Babu Maan has released numerous hit albums and
-          singles that have garnered him a massive fan following both in India
-          and abroad.
+          <div className="mb-4 mt-2 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <kbd
+                key={tag}
+                className="px-2 py-1.5 text-xs font-semibold text-white bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-200 dark:border-gray-500"
+              >
+                #{tag}
+              </kbd>
+            ))}
+          </div>
+          Nexsus AI is an intelligent chatbot application built using Java Spring Boot and React JS.
+          It integrates Google’s Gemini API to deliver real-time conversational AI capabilities through a clean, responsive UI styled with Bootstrap.
+          The chatbot enables users to ask questions in natural language and receive contextually relevant answers, powered by Gemini's advanced language model.
+          On the backend, a Spring Boot service handles API calls securely using WebClient, dynamically sending user queries and returning responses.
+          This project demonstrates modern full-stack development with AI integration for interactive user support experiences.
         </p>
+
       );
     },
   },
