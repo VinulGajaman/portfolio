@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { SelectedPage } from "../../shared/types";
 import HText from "../../shared/HText";
-import { ProjectsCards } from "../../components/ProjectsCards";
+// import { ProjectsCards } from "../../components/ProjectsCards";
+import { AppleCardsCarouselDemo } from "../../components/AppleCardsCarouselDemo";
 
 
 type Props = {
@@ -30,7 +31,8 @@ const Projects = ({ setSelectedPage }: Props) => {
 
                     className="items-center justify-between md:flex w-full mt-16 bg-gray-50 rounded-lg p-4 shadow-lg"
                 >
-                    <ProjectsCards />
+                    {/* <ProjectsCards /> */}
+                    <AppleCardsCarouselDemo />
                 </motion.div>
 
             </motion.div>

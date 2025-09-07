@@ -130,24 +130,52 @@ export function ProjectsCards() {
           </div>
         ) : null}
       </AnimatePresence>
-      <ul className="mx-auto w-full gap-4 max-h-[800px] overflow-y-auto 
-        [&::-webkit-scrollbar]:w-1.5
-        [&::-webkit-scrollbar-track]:bg-transparent
-        [&::-webkit-scrollbar-thumb]:bg-neutral-300
-        dark:[&::-webkit-scrollbar-thumb]:bg-neutral-700
-        [&::-webkit-scrollbar-thumb]:rounded-full
-        hover:[&::-webkit-scrollbar-thumb]:bg-neutral-400
-        dark:hover:[&::-webkit-scrollbar-thumb]:bg-neutral-600
-        [&::-webkit-scrollbar]:hidden
-        hover:[&::-webkit-scrollbar]:block
-        [@supports(scrollbar-width:thin)]:scrollbar-width-thin
-        [@supports(scrollbar-color:rgb(163_163_163)_transparent)]:scrollbar-color-neutral-400-transparent">
+      <ul 
+        className="mx-auto w-full flex gap-4 overflow-x-auto pb-4 cursor-grab active:cursor-grabbing select-none
+          [&::-webkit-scrollbar]:h-1.5
+          [&::-webkit-scrollbar-track]:bg-transparent
+          [&::-webkit-scrollbar-thumb]:bg-neutral-300
+          dark:[&::-webkit-scrollbar-thumb]:bg-neutral-700
+          [&::-webkit-scrollbar-thumb]:rounded-full
+          hover:[&::-webkit-scrollbar-thumb]:bg-neutral-400
+          dark:hover:[&::-webkit-scrollbar-thumb]:bg-neutral-600
+          [&::-webkit-scrollbar]:hidden
+          hover:[&::-webkit-scrollbar]:block
+          [@supports(scrollbar-width:thin)]:scrollbar-width-thin
+          [@supports(scrollbar-color:rgb(163_163_163)_transparent)]:scrollbar-color-neutral-400-transparent"
+        onMouseDown={(e) => {
+          const ele = e.currentTarget;
+          const startX = e.pageX - ele.offsetLeft;
+          const scrollLeft = ele.scrollLeft;
+
+          const handleMouseMove = (e: MouseEvent) => {
+            const x = e.pageX - ele.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll speed multiplier
+            ele.scrollLeft = scrollLeft - walk;
+          };
+
+          const handleMouseUp = () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+            ele.style.cursor = 'grab';
+          };
+
+          document.addEventListener('mousemove', handleMouseMove);
+          document.addEventListener('mouseup', handleMouseUp);
+          ele.style.cursor = 'grabbing';
+        }}
+      >
         {cards.map((card) => (
           <motion.div
             layoutId={`card-${card.title}-${id}`}
             key={`card-${card.title}-${id}`}
-            onClick={() => setActive(card)}
-            className="p-4 flex flex-col md:flex-row justify-between items-center border border-transparent hover:border-primary-500 hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
+            onClick={(e) => {
+              // Only trigger card click if we haven't dragged
+              if (Math.abs(e.currentTarget.getBoundingClientRect().left - e.clientX) < 5) {
+                setActive(card);
+              }
+            }}
+            className="min-w-[300px] w-[300px] flex-shrink-0 p-4 flex flex-col border border-transparent hover:border-primary-500 hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl transition-all duration-300 hover:shadow-lg"
           >
             <div className="flex gap-4 flex-col md:flex-row ">
               <motion.div layoutId={`image-${card.title}-${id}`}>
