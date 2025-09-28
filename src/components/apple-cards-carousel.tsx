@@ -27,6 +27,8 @@ type Card = {
   title: string;
   category: string;
   content: React.ReactNode;
+  srcMain: string;
+  sourceUrl:string;
 };
 
 export const CarouselContext = createContext<{
@@ -239,13 +241,17 @@ export const Card = ({
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
-        className="relative z-10 flex h-[30rem] w-80 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-[30rem] md:w-96 dark:bg-neutral-900"
-      >
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent" />
+        className="relative z-10 flex h-[30rem] w-80 flex-col items-start justify-start 
+                   overflow-hidden rounded-3xl bg-gray-100 md:h-[30rem] md:w-96 
+                   dark:bg-neutral-900 
+                   transition-all duration-300 
+                   hover:border-primary-500 hover:shadow-[0_0_20px_rgba(59,130,246,0.7)] 
+                   hover:brightness-90 m-1">
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent"/>
         <div className="relative z-40 p-8">
           <motion.p
             layoutId={layout ? `category-${card.category}` : undefined}
-            className="text-left font-sans text-sm font-medium text-white md:text-base"
+            className="text-left font-sans text-sm font-medium text-primary-500 md:text-base"
           >
             {card.category}
           </motion.p>
@@ -257,9 +263,11 @@ export const Card = ({
           </motion.p>
         </div>
         <BlurImage
-          src={card.src}
+          src={card.srcMain}
           alt={card.title}
-          className="absolute inset-0 z-10 object-cover"
+          className="rounded-xl object-contain "
+          width={100}
+          height={100}
         />
       </motion.button>
     </>
