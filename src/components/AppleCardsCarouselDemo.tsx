@@ -180,7 +180,7 @@ const data = [
       "An AI-powered Gmail extension that automatically generates email replies based on the original email content. Users can select the tone (Professional, Casual, Friendly) from a dropdown in the frontend. Built with Spring Boot, Gemini API, and ReactJS, it sends the email content to the backend and returns intelligent, context-aware replies, streamlining email communication.",
     src: emailai,
     srcMain: emailailogo,
-    sourceUrl: "https://github.com/VinulGajaman/AiBot",
+    sourceUrl: "https://github.com/VinulGajaman/ai-email-reply",
   },
   {
     category: "AI Productivity Tool",
