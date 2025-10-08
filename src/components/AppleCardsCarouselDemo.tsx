@@ -88,10 +88,10 @@ const ProjectCardContent = ({ category, title, description, imgSrc, tags, source
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           transition={{ type: "spring", stiffness: 300, damping: 15 }}
-          className="relative px-8 py-3 rounded-full 
-               bg-gradient-to-r from-primary-500 via-primary-800 to-secondary-500
+          className="relative px-8 py-3 rounded-full
+               bg-transparent from-primary-500 via-primary-800 to-secondary-500
                text-white text-sm font-semibold tracking-wide
-               border border-gray-500 shadow-lg overflow-hidden group"
+               border-2 border-primary-800 shadow-lg overflow-hidden group"
         >
           {/* Top glowing gradient line */}
           <span className="absolute inset-x-0 top-0 h-px w-1/2 mx-auto 
@@ -103,7 +103,7 @@ const ProjectCardContent = ({ category, title, description, imgSrc, tags, source
                      transition-transform duration-700 ease-in-out" />
 
           {/* Button label */}
-          <span className="relative z-10">View Source Code</span>
+          <span className="relative z-10 text-primary-300">View Source Code</span>
         </motion.a>
       </div>
 
